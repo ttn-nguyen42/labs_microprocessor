@@ -15,19 +15,19 @@ typedef enum ColorState {
 
 void SwitchRed(E_LEDState state) {
 	if (state == On) {
-		HAL_GPIO_WritePin(O_RED_LED_GPIO_Port, O_RED_LED_Pin, SET);
+		HAL_GPIO_WritePin(O_RED_LED_GPIO_Port, O_RED_LED_Pin, RESET);
 	}
 	if (state == Off) {
-		HAL_GPIO_WritePin(O_RED_LED_GPIO_Port, O_RED_LED_Pin, RESET);
+		HAL_GPIO_WritePin(O_RED_LED_GPIO_Port, O_RED_LED_Pin, SET);
 	}
 }
 
 void SwitchYellow(E_LEDState state) {
 	if (state == On) {
-		HAL_GPIO_WritePin(O_YEL_LED_GPIO_Port, O_YEL_LED_Pin, SET);
+		HAL_GPIO_WritePin(O_YEL_LED_GPIO_Port, O_YEL_LED_Pin, RESET);
 	}
 	if (state == Off) {
-		HAL_GPIO_WritePin(O_YEL_LED_GPIO_Port, O_YEL_LED_Pin, RESET);
+		HAL_GPIO_WritePin(O_YEL_LED_GPIO_Port, O_YEL_LED_Pin, SET);
 	}
 }
 

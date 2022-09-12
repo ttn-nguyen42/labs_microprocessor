@@ -92,8 +92,8 @@ void SwitchRed(E_LEDState state) {
  8000156:	79fb      	ldrb	r3, [r7, #7]
  8000158:	2b00      	cmp	r3, #0
  800015a:	d104      	bne.n	8000166 <SwitchRed+0x1a>
-		HAL_GPIO_WritePin(O_RED_LED_GPIO_Port, O_RED_LED_Pin, SET);
- 800015c:	2201      	movs	r2, #1
+		HAL_GPIO_WritePin(O_RED_LED_GPIO_Port, O_RED_LED_Pin, RESET);
+ 800015c:	2200      	movs	r2, #0
  800015e:	2120      	movs	r1, #32
  8000160:	4807      	ldr	r0, [pc, #28]	; (8000180 <SwitchRed+0x34>)
  8000162:	f000 fbed 	bl	8000940 <HAL_GPIO_WritePin>
@@ -102,8 +102,8 @@ void SwitchRed(E_LEDState state) {
  8000166:	79fb      	ldrb	r3, [r7, #7]
  8000168:	2b01      	cmp	r3, #1
  800016a:	d104      	bne.n	8000176 <SwitchRed+0x2a>
-		HAL_GPIO_WritePin(O_RED_LED_GPIO_Port, O_RED_LED_Pin, RESET);
- 800016c:	2200      	movs	r2, #0
+		HAL_GPIO_WritePin(O_RED_LED_GPIO_Port, O_RED_LED_Pin, SET);
+ 800016c:	2201      	movs	r2, #1
  800016e:	2120      	movs	r1, #32
  8000170:	4803      	ldr	r0, [pc, #12]	; (8000180 <SwitchRed+0x34>)
  8000172:	f000 fbe5 	bl	8000940 <HAL_GPIO_WritePin>
@@ -128,8 +128,8 @@ void SwitchYellow(E_LEDState state) {
  800018e:	79fb      	ldrb	r3, [r7, #7]
  8000190:	2b00      	cmp	r3, #0
  8000192:	d104      	bne.n	800019e <SwitchYellow+0x1a>
-		HAL_GPIO_WritePin(O_YEL_LED_GPIO_Port, O_YEL_LED_Pin, SET);
- 8000194:	2201      	movs	r2, #1
+		HAL_GPIO_WritePin(O_YEL_LED_GPIO_Port, O_YEL_LED_Pin, RESET);
+ 8000194:	2200      	movs	r2, #0
  8000196:	2140      	movs	r1, #64	; 0x40
  8000198:	4807      	ldr	r0, [pc, #28]	; (80001b8 <SwitchYellow+0x34>)
  800019a:	f000 fbd1 	bl	8000940 <HAL_GPIO_WritePin>
@@ -138,8 +138,8 @@ void SwitchYellow(E_LEDState state) {
  800019e:	79fb      	ldrb	r3, [r7, #7]
  80001a0:	2b01      	cmp	r3, #1
  80001a2:	d104      	bne.n	80001ae <SwitchYellow+0x2a>
-		HAL_GPIO_WritePin(O_YEL_LED_GPIO_Port, O_YEL_LED_Pin, RESET);
- 80001a4:	2200      	movs	r2, #0
+		HAL_GPIO_WritePin(O_YEL_LED_GPIO_Port, O_YEL_LED_Pin, SET);
+ 80001a4:	2201      	movs	r2, #1
  80001a6:	2140      	movs	r1, #64	; 0x40
  80001a8:	4803      	ldr	r0, [pc, #12]	; (80001b8 <SwitchYellow+0x34>)
  80001aa:	f000 fbc9 	bl	8000940 <HAL_GPIO_WritePin>
