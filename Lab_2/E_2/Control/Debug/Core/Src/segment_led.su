@@ -1,0 +1,5 @@
+../Core/Src/segment_led.cpp:3:1:SegmentLed::SegmentLed(PinPair*, PinPair*, PinPair*, PinPair*, PinPair*, PinPair*, PinPair*, PinPair*)	24	static
+../Core/Src/segment_led.cpp:16:6:void SegmentLed::update(int)	16	static
+../Core/Src/segment_led.cpp:115:6:void SegmentLed::clear()	16	static
+../Core/Src/segment_led.cpp:126:6:void SegmentLed::turnOn()	16	static
+../Core/Src/segment_led.cpp:130:6:void SegmentLed::turnOff()	16	static

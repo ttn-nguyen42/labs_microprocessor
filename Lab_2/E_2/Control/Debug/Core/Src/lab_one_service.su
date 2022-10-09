@@ -1,0 +1,3 @@
+../Core/Inc/service.h:11:7:constexpr Service::Service()	16	static
+../Core/Src/lab_one_service.cpp:11:1:LabOneService::LabOneService(Timer*, PinPair*, PinPair*, PinPair*, PinPair*, PinPair*, PinPair*, PinPair*, PinPair*, PinPair*, PinPair*)	56	static
+../Core/Src/lab_one_service.cpp:23:6:virtual void LabOneService::run(int&)	16	static

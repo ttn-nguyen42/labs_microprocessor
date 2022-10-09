@@ -1,0 +1,4 @@
+../Core/Inc/service.h:11:7:constexpr Service::Service()	16	static
+../Core/Src/lab_three_service.cpp:11:1:LabThreeService::LabThreeService(Timer*, SegmentLed*, SegmentLed*, SegmentLed*, SegmentLed*)	24	static
+../Core/Src/lab_three_service.cpp:21:6:virtual void LabThreeService::run(int&)	16	static
+../Core/Src/lab_three_service.cpp:24:6:void LabThreeService::run(int&, int (&)[4])	24	static

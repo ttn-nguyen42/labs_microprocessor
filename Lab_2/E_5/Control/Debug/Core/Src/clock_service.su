@@ -1,0 +1,4 @@
+../Core/Inc/service.h:11:7:constexpr Service::Service()	16	static
+../Core/Src/clock_service.cpp:10:1:ClockService::ClockService(Timer*)	16	static
+../Core/Src/clock_service.cpp:14:6:virtual void ClockService::run(int&)	16	static
+../Core/Src/clock_service.cpp:17:6:void ClockService::run(int&, int&, int (&)[4])	24	static
