@@ -1,0 +1,7 @@
+../Core/Src/services/traffic_light.cpp:3:6:void TrafficLight::Switch(ELights)	16	static
+../Core/Src/services/traffic_light.cpp:25:6:void TrafficLight::Toggle(ELights)	16	static
+../Core/Src/services/traffic_light.cpp:41:6:void TrafficLight::SetCountdown(int)	16	static
+../Core/Src/services/traffic_light.cpp:49:6:void TrafficLight::RefreshCountdown()	16	static
+../Core/Src/services/traffic_light.cpp:56:6:void TrafficLight::Display(int)	16	static
+../Core/Src/services/traffic_light.cpp:61:6:void TrafficLight::DisableCountdown()	16	static
+../Core/Src/services/traffic_light.cpp:65:6:void TrafficLight::EnableCountdown()	16	static

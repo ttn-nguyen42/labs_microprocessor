@@ -1,0 +1,6 @@
+../Core/Inc/components/led.h:13:3:Led::Led(PinPair*)	16	static
+../Core/Src/components/led.cpp:3:6:void Led::On()	16	static
+../Core/Src/components/led.cpp:10:6:void Led::Off()	16	static
+../Core/Src/components/led.cpp:17:6:bool Led::IsOn()	16	static
+../Core/Src/components/led.cpp:21:6:void Led::Toggle()	16	static
+../Core/Src/components/led.cpp:26:6:static Led* Led::CreateLed(PinPair*)	32	static

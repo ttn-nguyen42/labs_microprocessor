@@ -1,0 +1,6 @@
+../Core/Src/components/segment_led.cpp:4:1:SegmentLed::SegmentLed(PinPair**, PinPair*)	32	static
+../Core/Src/components/segment_led.cpp:11:5:int SegmentLed::GetCurrentNumber()	16	static
+../Core/Src/components/segment_led.cpp:15:6:void SegmentLed::Off()	16	static
+../Core/Src/components/segment_led.cpp:19:6:void SegmentLed::On()	16	static
+../Core/Src/components/segment_led.cpp:23:6:void SegmentLed::Clear()	24	static
+../Core/Src/components/segment_led.cpp:31:6:void SegmentLed::Display(int)	16	static

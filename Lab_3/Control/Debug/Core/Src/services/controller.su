@@ -1,0 +1,6 @@
+../Core/Src/services/controller.cpp:4:5:int Controller::GetState()	16	static
+../Core/Src/services/controller.cpp:8:6:void Controller::SetState(int)	16	static
+../Core/Src/services/controller.cpp:12:1:Controller::Controller()	16	static
+../Core/Src/services/controller.cpp:19:6:void Controller::Work()	16	static
+../Core/Src/services/controller.cpp:289:1:void __static_initialization_and_destruction_0(int, int)	16	static
+../Core/Src/services/controller.cpp:289:1:cpp)	8	static

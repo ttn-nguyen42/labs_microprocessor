@@ -1,0 +1,2 @@
+../Core/Src/components/switch_button.cpp:3:6:void Button::Listen()	24	static
+../Core/Src/components/switch_button.cpp:27:6:bool Button::IsPressed()	16	static

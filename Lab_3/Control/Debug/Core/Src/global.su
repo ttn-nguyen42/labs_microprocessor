@@ -1,0 +1,7 @@
+../Core/Inc/pin_pair.h:13:3:PinPair::PinPair(GPIO_TypeDef*, uint16_t)	24	static
+../Core/Inc/components/switch_button.h:26:3:Button::Button(PinPair*)	16	static
+../Core/Inc/components/led.h:13:3:Led::Led(PinPair*)	16	static
+../Core/Inc/timer.h:13:3:Timer::Timer()	16	static
+../Core/Inc/services/traffic_light.h:20:3:TrafficLight::TrafficLight(Led*, Led*, Led*, SegmentLed*)	24	static
+../Core/Src/global.cpp:103:26:void __static_initialization_and_destruction_0(int, int)	24	static
+../Core/Src/global.cpp:103:26:cpp)	8	static

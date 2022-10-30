@@ -1,0 +1,6 @@
+../Core/Src/pin_pair.cpp:3:6:void PinPair::Set()	16	static
+../Core/Src/pin_pair.cpp:8:6:void PinPair::Reset()	16	static
+../Core/Src/pin_pair.cpp:13:6:bool PinPair::IsSet()	16	static
+../Core/Src/pin_pair.cpp:17:15:GPIO_TypeDef* PinPair::GetPort()	16	static
+../Core/Src/pin_pair.cpp:21:10:uint16_t PinPair::GetPin()	16	static
+../Core/Src/pin_pair.cpp:25:6:void PinPair::Toggle()	16	static
