@@ -1,0 +1,1 @@
+../Core/Src/model/input.cpp:10:15:GPIO_PinState Input::Read()	16	static

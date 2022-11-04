@@ -1,0 +1,6 @@
+../Core/Src/model/pin.cpp:10:1:Pin::Pin()	16	static
+../Core/Src/model/pin.cpp:12:1:Pin::Pin(GPIO_TypeDef*, uint16_t)	24	static
+../Core/Src/model/pin.cpp:21:6:Pin* Pin::SetPin(uint16_t)	16	static
+../Core/Src/model/pin.cpp:27:6:Pin* Pin::SetPort(GPIO_TypeDef*)	16	static
+../Core/Src/model/pin.cpp:36:10:uint16_t Pin::GetPin()	16	static
+../Core/Src/model/pin.cpp:38:15:GPIO_TypeDef* Pin::GetPort()	16	static

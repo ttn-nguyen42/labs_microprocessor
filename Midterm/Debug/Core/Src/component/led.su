@@ -1,0 +1,6 @@
+../Core/Inc/model/led.h:11:7:constexpr ILed::ILed()	16	static
+../Core/Src/component/led.cpp:10:1:Led::Led(Output*)	16	static
+../Core/Src/component/led.cpp:15:6:bool Led::IsOn()	16	static
+../Core/Src/component/led.cpp:23:6:virtual void Led::On()	16	static
+../Core/Src/component/led.cpp:31:6:virtual void Led::Off()	16	static
+../Core/Src/component/led.cpp:39:6:void Led::Toggle()	16	static

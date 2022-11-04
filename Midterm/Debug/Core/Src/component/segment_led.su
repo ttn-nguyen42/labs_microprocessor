@@ -1,0 +1,6 @@
+../Core/Inc/model/led.h:11:7:constexpr ILed::ILed()	16	static
+../Core/Src/component/segment_led.cpp:10:1:SegmentLed::SegmentLed(Led**, Output*)	32	static
+../Core/Src/component/segment_led.cpp:21:6:virtual void SegmentLed::Off()	16	static
+../Core/Src/component/segment_led.cpp:23:6:virtual void SegmentLed::On()	16	static
+../Core/Src/component/segment_led.cpp:25:6:void SegmentLed::Clear()	24	static
+../Core/Src/component/segment_led.cpp:34:6:void SegmentLed::Display(int)	16	static
