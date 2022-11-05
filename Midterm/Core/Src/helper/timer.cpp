@@ -24,14 +24,12 @@ bool Timer::HasSignal()
 /*
  * Controls
  */
-void Timer::Reset() { m_Remaining = m_Duration; }
+void Timer::Start() { m_Remaining = m_Duration; }
+void Timer::Reset() { Start(); }
 
 void Timer::Set(int duration)
 {
-    m_Duration = duration;
-    if (m_Remaining > m_Duration) {
-        Reset();
-    }
+    m_Duration = duration / TICK;
 }
 
 void Timer::Breath()
@@ -40,7 +38,7 @@ void Timer::Breath()
         m_Remaining -= 1;
         if (m_Remaining == 0) {
             m_Signal = true;
-            Reset();
+            Start();
         }
     }
 }

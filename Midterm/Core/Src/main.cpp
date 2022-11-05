@@ -19,9 +19,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 
-#include "global.cpp"
 #include "global.h"
-
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 
@@ -50,6 +48,7 @@ TIM_HandleTypeDef htim2;
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+static void MX_GPIO_Init(void);
 static void MX_TIM2_Init(void);
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim);
 /* USER CODE BEGIN PFP */
@@ -90,11 +89,12 @@ int main(void)
 
     /* Initialize all configured peripherals */
     MX_TIM2_Init();
+    MX_GPIO_Init();
     /* USER CODE BEGIN 2 */
-    HAL_TIM_Base_Stop_IT(&htim2);
+    HAL_TIM_Base_Start_IT(&htim2);
 
     /*
-     * Initialize timer here
+     * Initialize timers here
      */
     /* USER CODE END 2 */
 
@@ -104,6 +104,7 @@ int main(void)
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
+        g_LedService.Run();
         g_Controller.Run();
     }
     /* USER CODE END 3 */
@@ -117,13 +118,16 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
     /*
      * Button listeners
      */
-    g_ButtonMode.Listen();
-    g_ButtonSelect.Listen();
+    g_ButtonRes.Listen();
+    g_ButtonInc.Listen();
+    g_ButtonDec.Listen();
 
     /*
      * Timer breathers
      */
     g_TimerGlobal.Breath();
+    g_TimerTestLed.Breath();
+    g_TimerAutoDecrement.Breath();
 }
 
 /**
@@ -148,7 +152,8 @@ void SystemClock_Config(void)
 
     /** Initializes the CPU, AHB and APB buses clocks
      */
-    RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
+    RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK
+        | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
     RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_HSI;
     RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
     RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
@@ -166,6 +171,7 @@ void SystemClock_Config(void)
  */
 static void MX_TIM2_Init(void)
 {
+
     /* USER CODE BEGIN TIM2_Init 0 */
 
     /* USER CODE END TIM2_Init 0 */
@@ -199,6 +205,39 @@ static void MX_TIM2_Init(void)
     /* USER CODE END TIM2_Init 2 */
 }
 
+/**
+ * @brief GPIO Initialization Function
+ * @param None
+ * @retval None
+ */
+static void MX_GPIO_Init(void)
+{
+    GPIO_InitTypeDef GPIO_InitStruct = { 0 };
+
+    /* GPIO Ports Clock Enable */
+    __HAL_RCC_GPIOA_CLK_ENABLE();
+
+    /*Configure GPIO pin Output Level */
+    HAL_GPIO_WritePin(GPIOA, O_TEST_LED_Pin | O_SEG_SIG_Pin | O_SEG_A_Pin | O_SEG_B_Pin | O_SEG_C_Pin | O_SEG_D_Pin | O_SEG_E_Pin | O_SEG_F_Pin | O_SEG_G_Pin, GPIO_PIN_RESET);
+
+    /*Configure GPIO pins : O_TEST_LED_Pin O_SEG_SIG_Pin O_SEG_A_Pin O_SEG_B_Pin
+                             O_SEG_C_Pin O_SEG_D_Pin O_SEG_E_Pin O_SEG_F_Pin
+                             O_SEG_G_Pin */
+    GPIO_InitStruct.Pin = O_TEST_LED_Pin | O_SEG_SIG_Pin | O_SEG_A_Pin | O_SEG_B_Pin
+        | O_SEG_C_Pin | O_SEG_D_Pin | O_SEG_E_Pin | O_SEG_F_Pin
+        | O_SEG_G_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+
+    /*Configure GPIO pins : I_BUT_RES_Pin I_BUT_INC_Pin I_BUT_SET_Pin */
+    GPIO_InitStruct.Pin = I_BUT_RES_Pin | I_BUT_INC_Pin | I_BUT_SET_Pin;
+    GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+    GPIO_InitStruct.Pull = GPIO_NOPULL;
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
+}
+
 /* USER CODE BEGIN 4 */
 
 /* USER CODE END 4 */
@@ -228,9 +267,8 @@ void Error_Handler(void)
 void assert_failed(uint8_t* file, uint32_t line)
 {
     /* USER CODE BEGIN 6 */
-    /* User can add his own implementation to report the file name and line
-       number, ex: printf("Wrong parameters value: file %s on line %d\r\n", file,
-       line) */
+    /* User can add his own implementation to report the file name and line number,
+       ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
     /* USER CODE END 6 */
 }
 #endif /* USE_FULL_ASSERT */

@@ -23,14 +23,18 @@ void Switch::Listen()
             m_KeyReg[3] = m_KeyReg[2];
 
             if (m_KeyReg[3] == PRESSED) {
-                c_Timeout = BUTTON_TIMEOUT;
+                c_Timeout = BUTTON_TIMEOUT / TICK;
                 m_Flag = true;
+            } else {
+                m_FlagLong = false;
             }
-        }
-    } else {
-        c_Timeout -= 1;
-        if (c_Timeout == 0) {
-            m_KeyReg[3] = STANDBY;
+        } else {
+            if (m_KeyReg[3] == PRESSED) {
+                c_Timeout -= 1;
+                if (c_Timeout == 0) {
+                    m_FlagLong = true;
+                }
+            }
         }
     }
 }
@@ -45,4 +49,9 @@ bool Switch::IsPressed()
         return true;
     }
     return false;
+}
+
+bool Switch::IsLongPressed()
+{
+    return m_FlagLong;
 }

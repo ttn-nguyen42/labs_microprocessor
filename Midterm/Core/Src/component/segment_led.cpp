@@ -33,7 +33,7 @@ void SegmentLed::Clear()
 
 void SegmentLed::Display(int number)
 {
-    if (m_Control->IsSet()) {
+    if (!m_Control->IsSet()) {
         switch (number) {
         case 0:
             m_Led[0]->On();

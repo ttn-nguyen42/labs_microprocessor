@@ -8,6 +8,8 @@
 #ifndef INC_HELPER_TIMER_H_
 #define INC_HELPER_TIMER_H_
 
+#include "global.h"
+
 class Timer {
 private:
     bool m_Signal = false;
@@ -20,6 +22,7 @@ public:
     /*
      * Reset/Start the timer
      */
+    void Start();
     void Reset();
 
     /*

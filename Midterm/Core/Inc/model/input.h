@@ -16,6 +16,7 @@ public:
     Input();
     Input(GPIO_TypeDef* port, uint16_t pin);
 
+
     /*
      * Read pin
      */

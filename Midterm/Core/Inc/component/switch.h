@@ -18,6 +18,7 @@ class Switch {
 private:
     int m_KeyReg[4] = { STANDBY, STANDBY, STANDBY, STANDBY };
     bool m_Flag = false;
+    bool m_FlagLong = false;
 
     Input* m_Pin = nullptr;
 
@@ -30,6 +31,7 @@ public:
      * Flag check
      */
     bool IsPressed();
+    bool IsLongPressed();
 
     /*
      * Used in callback to update button status

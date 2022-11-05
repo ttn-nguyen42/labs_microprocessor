@@ -9,10 +9,11 @@
 #define INC_SERVICE_CONTROLLER_H_
 
 #include "global.h"
+#include "state.h"
 
 class Controller : public IController {
 private:
-    int STATE = INIT;
+    State STATE = State::INIT;
 
 public:
     /*
@@ -23,8 +24,8 @@ public:
     /*
      * State helpers
      */
-    int GetState();
-    void SetState(int to);
+    State GetState();
+    void SetState(State to);
 };
 
 #endif /* INC_SERVICE_CONTROLLER_H_ */

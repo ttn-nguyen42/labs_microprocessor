@@ -1,6 +1,6 @@
 Core/Src/service/controller.o: ../Core/Src/service/controller.cpp \
  ../Core/Inc/service/controller.h ../Core/Inc/global.h \
- ../Core/Inc/state.h ../Core/Inc/component/led.h ../Core/Inc/model/led.h \
+ ../Core/Inc/component/led.h ../Core/Inc/model/led.h \
  ../Core/Inc/model/output.h ../Core/Inc/model/pin.h ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  ../Core/Inc/stm32f1xx_hal_conf.h \
@@ -31,10 +31,11 @@ Core/Src/service/controller.o: ../Core/Src/service/controller.cpp \
  ../Core/Inc/helper/timer.h ../Core/Inc/main.h \
  ../Core/Inc/model/controller.h ../Core/Inc/model/input.h \
  ../Core/Inc/model/led.h ../Core/Inc/model/output.h \
- ../Core/Inc/model/pin.h ../Core/Inc/service/controller.h
+ ../Core/Inc/model/pin.h ../Core/Inc/service/controller.h \
+ ../Core/Inc/service/led_controller.h ../Core/Inc/state.h \
+ ../Core/Inc/state.h
 ../Core/Inc/service/controller.h:
 ../Core/Inc/global.h:
-../Core/Inc/state.h:
 ../Core/Inc/component/led.h:
 ../Core/Inc/model/led.h:
 ../Core/Inc/model/output.h:
@@ -76,3 +77,6 @@ Core/Src/service/controller.o: ../Core/Src/service/controller.cpp \
 ../Core/Inc/model/output.h:
 ../Core/Inc/model/pin.h:
 ../Core/Inc/service/controller.h:
+../Core/Inc/service/led_controller.h:
+../Core/Inc/state.h:
+../Core/Inc/state.h:

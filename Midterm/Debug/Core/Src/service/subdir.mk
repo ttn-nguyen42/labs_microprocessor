@@ -5,13 +5,16 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
-../Core/Src/service/controller.cpp 
+../Core/Src/service/controller.cpp \
+../Core/Src/service/led_controller.cpp 
 
 OBJS += \
-./Core/Src/service/controller.o 
+./Core/Src/service/controller.o \
+./Core/Src/service/led_controller.o 
 
 CPP_DEPS += \
-./Core/Src/service/controller.d 
+./Core/Src/service/controller.d \
+./Core/Src/service/led_controller.d 
 
 
 # Each subdirectory must supply rules for building sources it contributes
@@ -21,7 +24,7 @@ Core/Src/service/%.o Core/Src/service/%.su: ../Core/Src/service/%.cpp Core/Src/s
 clean: clean-Core-2f-Src-2f-service
 
 clean-Core-2f-Src-2f-service:
-	-$(RM) ./Core/Src/service/controller.d ./Core/Src/service/controller.o ./Core/Src/service/controller.su
+	-$(RM) ./Core/Src/service/controller.d ./Core/Src/service/controller.o ./Core/Src/service/controller.su ./Core/Src/service/led_controller.d ./Core/Src/service/led_controller.o ./Core/Src/service/led_controller.su
 
 .PHONY: clean-Core-2f-Src-2f-service
 
