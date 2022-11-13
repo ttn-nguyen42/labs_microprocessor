@@ -8,19 +8,22 @@
 #ifndef INC_CONTROLLER_SCHEDULER_H_
 #define INC_CONTROLLER_SCHEDULER_H_
 
+#include "exception/exception.h"
+#include "helper/timer.h"
+#include "model/task.h"
+
+#define SCH_MAX_TASKS 40
+#define NO_TASK_ID 0
+
 class Scheduler {
 private:
-    /*
-     * Rebuild scheduler queue
-     *
-     * @note Invoked when scheduler is full
-     */
-    void _UpdateTask();
+    // Scheduler queue
+    Task m_TaskQueue[SCH_MAX_TASKS];
+
+    int m_QueueSize = 0;
 
 public:
-    Scheduler()
-    {
-    }
+    Scheduler();
 
     /*
      * Add new task to the scheduler queue
@@ -41,7 +44,7 @@ public:
      * @param int taskIndex Index of the task inside the queue
      *                      Given after invoking AddTask()
      */
-    int DeleteTask(int taskIndex);
+    void DeleteTask(int taskIndex);
 
     /*
      * Initialize the scheduler
@@ -56,6 +59,11 @@ public:
      * @note Calls in the PeriodElapsedCallback()
      */
     void Dispatch();
-}
+
+    /*
+     * Update tasks' time
+     */
+    void Update();
+};
 
 #endif /* INC_CONTROLLER_SCHEDULER_H_ */

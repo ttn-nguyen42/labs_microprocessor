@@ -25,6 +25,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "global.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -102,10 +103,17 @@ int main(void)
 
     /* Infinite loop */
     /* USER CODE BEGIN WHILE */
+    g_Scheduler.Init();
+
+    /*
+     * Controller will add tasks to the scheduler
+     */
+    g_Controller.Run();
     while (1) {
         /* USER CODE END WHILE */
 
         /* USER CODE BEGIN 3 */
+        g_Scheduler.Dispatch();
     }
     /* USER CODE END 3 */
 }
@@ -115,6 +123,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
     /*
      * Invoked every 10ms
      */
+    g_Scheduler.Update();
 }
 
 /**

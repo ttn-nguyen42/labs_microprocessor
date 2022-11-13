@@ -8,7 +8,8 @@
 #ifndef INC_HELPER_TIMER_H_
 #define INC_HELPER_TIMER_H_
 
-#include "global.h"
+#define ONE_SECOND 1000
+#define TICK 10
 
 class Timer {
 private:

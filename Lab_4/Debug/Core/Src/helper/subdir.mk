@@ -5,12 +5,15 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 CPP_SRCS += \
+../Core/Src/helper/scheduler.cpp \
 ../Core/Src/helper/timer.cpp 
 
 OBJS += \
+./Core/Src/helper/scheduler.o \
 ./Core/Src/helper/timer.o 
 
 CPP_DEPS += \
+./Core/Src/helper/scheduler.d \
 ./Core/Src/helper/timer.d 
 
 
@@ -21,7 +24,7 @@ Core/Src/helper/%.o Core/Src/helper/%.su: ../Core/Src/helper/%.cpp Core/Src/help
 clean: clean-Core-2f-Src-2f-helper
 
 clean-Core-2f-Src-2f-helper:
-	-$(RM) ./Core/Src/helper/timer.d ./Core/Src/helper/timer.o ./Core/Src/helper/timer.su
+	-$(RM) ./Core/Src/helper/scheduler.d ./Core/Src/helper/scheduler.o ./Core/Src/helper/scheduler.su ./Core/Src/helper/timer.d ./Core/Src/helper/timer.o ./Core/Src/helper/timer.su
 
 .PHONY: clean-Core-2f-Src-2f-helper
 

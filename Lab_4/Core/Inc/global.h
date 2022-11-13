@@ -14,12 +14,10 @@
 #define BUTTON_TIMEOUT 3000
 #define AUTO_MODE_TRIGGER_TIME 10000
 
-#define ONE_SECOND 1000
-#define TICK 10
-
 #include "component/led.h"
 #include "component/segment_led.h"
 #include "component/switch.h"
+#include "helper/scheduler.h"
 #include "helper/timer.h"
 #include "main.h"
 #include "model/controller.h"
@@ -32,50 +30,32 @@
 #include "state.h"
 
 /*
- * Pins - Outputs
+ * Timers
  */
-extern class Output o_TEST_LED;
-extern class Output o_SEG_SIG;
-extern class Output o_SEG_A;
-extern class Output o_SEG_B;
-extern class Output o_SEG_C;
-extern class Output o_SEG_D;
-extern class Output o_SEG_E;
-extern class Output o_SEG_F;
-extern class Output o_SEG_G;
+extern class Timer g_TimerScheduler;
 
 /*
- * Pins - Input
+ * Scheduler
  */
-extern class Input i_BUT_RES;
-extern class Input i_BUT_INC;
-extern class Input i_BUT_DEC;
+extern class Scheduler g_Scheduler;
+
+/*
+ * Pins
+ */
+extern class Output O_LED_RED;
+extern class Output O_LED_YEL;
+extern class Output O_LED_GRN;
 
 /*
  * LEDs
  */
-extern class Led g_LedTest;
-extern class SegmentLed g_SegCounter;
+extern class Led g_RedLed;
+extern class Led g_YelLed;
+extern class Led g_GrnLed;
 
 /*
- * Buttons
+ * Services
  */
-extern class Switch g_ButtonRes;
-extern class Switch g_ButtonInc;
-extern class Switch g_ButtonDec;
-
-/*
- * Timers
- */
-extern class Timer g_TimerGlobal;
-extern class Timer g_TimerTestLed;
-extern class Timer g_TimerAutoDecrement;
-
-/*
- * Main controller
- * Controls the whole program
- */
-extern class Controller g_Controller;
-extern class LedController g_LedService;
+extern class LedController g_Controller;
 
 #endif /* INC_GLOBAL_H_ */

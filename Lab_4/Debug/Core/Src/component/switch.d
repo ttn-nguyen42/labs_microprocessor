@@ -27,13 +27,14 @@ Core/Src/component/switch.o: ../Core/Src/component/switch.cpp \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h \
  ../Core/Inc/component/segment_led.h ../Core/Inc/component/led.h \
- ../Core/Inc/component/switch.h ../Core/Inc/helper/timer.h \
- ../Core/Inc/main.h ../Core/Inc/model/controller.h \
- ../Core/Inc/model/input.h ../Core/Inc/model/led.h \
- ../Core/Inc/model/output.h ../Core/Inc/model/pin.h \
- ../Core/Inc/service/controller.h ../Core/Inc/state.h \
- ../Core/Inc/service/led_controller.h ../Core/Inc/state.h \
- ../Core/Inc/model/input.h
+ ../Core/Inc/component/switch.h ../Core/Inc/helper/scheduler.h \
+ ../Core/Inc/exception/exception.h ../Core/Inc/helper/timer.h \
+ ../Core/Inc/model/task.h ../Core/Inc/helper/timer.h ../Core/Inc/main.h \
+ ../Core/Inc/model/controller.h ../Core/Inc/model/input.h \
+ ../Core/Inc/model/led.h ../Core/Inc/model/output.h \
+ ../Core/Inc/model/pin.h ../Core/Inc/service/controller.h \
+ ../Core/Inc/state.h ../Core/Inc/service/led_controller.h \
+ ../Core/Inc/state.h ../Core/Inc/model/input.h
 ../Core/Inc/component/switch.h:
 ../Core/Inc/global.h:
 ../Core/Inc/component/led.h:
@@ -68,6 +69,10 @@ Core/Src/component/switch.o: ../Core/Src/component/switch.cpp \
 ../Core/Inc/component/segment_led.h:
 ../Core/Inc/component/led.h:
 ../Core/Inc/component/switch.h:
+../Core/Inc/helper/scheduler.h:
+../Core/Inc/exception/exception.h:
+../Core/Inc/helper/timer.h:
+../Core/Inc/model/task.h:
 ../Core/Inc/helper/timer.h:
 ../Core/Inc/main.h:
 ../Core/Inc/model/controller.h:

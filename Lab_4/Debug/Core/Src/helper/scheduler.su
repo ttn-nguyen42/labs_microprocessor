@@ -1,0 +1,7 @@
+../Core/Inc/model/task.h:33:3:Task::Task()	16	static
+../Core/Src/helper/scheduler.cpp:10:1:Scheduler::Scheduler()	24	static
+../Core/Src/helper/scheduler.cpp:14:5:int Scheduler::AddTask(void (*)(), int, int)	32	static
+../Core/Src/helper/scheduler.cpp:42:6:void Scheduler::DeleteTask(int)	24	static
+../Core/Src/helper/scheduler.cpp:65:6:void Scheduler::Init()	24	static
+../Core/Src/helper/scheduler.cpp:75:6:void Scheduler::Dispatch()	24	static
+../Core/Src/helper/scheduler.cpp:97:6:void Scheduler::Update()	24	static
