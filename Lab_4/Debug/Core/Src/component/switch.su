@@ -1,0 +1,4 @@
+../Core/Src/component/switch.cpp:10:1:Switch::Switch(Input*)	16	static
+../Core/Src/component/switch.cpp:15:6:void Switch::Listen()	16	static
+../Core/Src/component/switch.cpp:45:6:bool Switch::IsPressed()	16	static
+../Core/Src/component/switch.cpp:54:6:bool Switch::IsLongPressed()	16	static

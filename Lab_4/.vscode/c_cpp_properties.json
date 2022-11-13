@@ -1,0 +1,24 @@
+{
+	"configurations": [
+		{
+			"name": "Win32",
+			"includePath": [
+				"${workspaceFolder}/**",
+				"${workspaceFolder}/Drivers/STM32F1xx_HAL_Driver/Inc",
+				"${workspaceFolder}/Drivers/STM32F1xx_HAL_Driver/Src"
+			],
+			"defines": [
+				"_DEBUG",
+				"UNICODE",
+				"_UNICODE",
+				"STM32F1xx",
+				"USE_HAL_DRIVER"
+			],
+			"compilerPath": "C:\\MinGW\\bin\\gcc.exe",
+			"cStandard": "c11",
+			"cppStandard": "gnu++14",
+			"intelliSenseMode": "windows-gcc-x64"
+		}
+	],
+	"version": 4
+}
