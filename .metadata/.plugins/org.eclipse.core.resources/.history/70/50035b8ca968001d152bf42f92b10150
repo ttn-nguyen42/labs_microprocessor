@@ -1,0 +1,22 @@
+/*
+ * adc_input.cpp
+ *
+ *  Created on: Nov 4, 2022
+ *      Author: Nguyen Tran
+ */
+#include "model/adc_input.h"
+
+ADCInput::ADCInput(ADC_HandleTypeDef* def)
+{
+    m_TypeDef = def;
+}
+
+ADC_HandleTypeDef* ADCInput::GetTypeDef()
+{
+    return m_TypeDef;
+}
+
+uint32_t ADCInput::Get()
+{
+    return HAL_ADC_GetValue(&m_TypeDef);
+}

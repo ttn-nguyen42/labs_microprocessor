@@ -1,0 +1,27 @@
+16:21:00 **** Incremental Build of configuration Debug for project Lab_5_C ****
+make -j8 all 
+arm-none-eabi-g++ "../Core/Src/service/sensor_reader.cpp" -mcpu=cortex-m3 -std=gnu++14 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F103x6 -c -I../Core/Inc -I../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy -I../Drivers/STM32F1xx_HAL_Driver/Inc -I../Drivers/CMSIS/Device/ST/STM32F1xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -fno-exceptions -fno-rtti -fno-use-cxa-atexit -Wall -fstack-usage -MMD -MP -MF"Core/Src/service/sensor_reader.d" -MT"Core/Src/service/sensor_reader.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "Core/Src/service/sensor_reader.o"
+../Core/Src/service/sensor_reader.cpp: In member function 'void SensorReader::_ReadSensor()':
+../Core/Src/service/sensor_reader.cpp:53:31: warning: format '%d' expects argument of type 'int', but argument 3 has type 'uint32_t' {aka 'long unsigned int'} [-Wformat=]
+   53 |     int size = sprintf(str, "%d\n", m_SensorData);
+      |                              ~^     ~~~~~~~~~~~~
+      |                               |     |
+      |                               int   uint32_t {aka long unsigned int}
+      |                              %ld
+arm-none-eabi-g++ -o "Lab_5_C.elf" @"objects.list"   -mcpu=cortex-m3 -T"C:\Users\ttng\Projects\microprocessorlab\Lab_5_C\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Lab_5_C.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+Finished building target: Lab_5_C.elf
+ 
+arm-none-eabi-size   Lab_5_C.elf 
+arm-none-eabi-objdump -h -S  Lab_5_C.elf  > "Lab_5_C.list"
+arm-none-eabi-objcopy  -O ihex  Lab_5_C.elf  "Lab_5_C.hex"
+   text	   data	    bss	    dec	    hex	filename
+  16400	    148	   2640	  19188	   4af4	Lab_5_C.elf
+Finished building: default.size.stdout
+ 
+Finished building: Lab_5_C.hex
+ 
+Finished building: Lab_5_C.list
+ 
+
+16:21:02 Build Finished. 0 errors, 1 warnings. (took 1s.155ms)
+

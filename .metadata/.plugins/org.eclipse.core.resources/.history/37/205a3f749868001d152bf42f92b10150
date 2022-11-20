@@ -1,0 +1,24 @@
+/*
+ * uart_listener.cpp
+ *
+ *  Created on: Nov 4, 2022
+ *      Author: Nguyen Tran
+ */
+
+#include "helper/uart_listener.h"
+
+uint8_t GetTemp()
+{
+    return m_Temp;
+};
+
+uint8_t* GetTempAddr()
+{
+    return &m_Temp;
+};
+
+void Listen(UART_HandleTypeDef* huart)
+{
+    if (huart->Instance == USART2) {
+    }
+};

@@ -1,0 +1,15 @@
+/*
+ * uart_input.h
+ *
+ *  Created on: Nov 20, 2022
+ *      Author: ttng
+ */
+
+#ifndef INC_MODEL_UART_INPUT_H_
+#define INC_MODEL_UART_INPUT_H_
+
+
+
+
+
+#endif /* INC_MODEL_UART_INPUT_H_ */

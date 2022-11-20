@@ -1,0 +1,5 @@
+c:\st\stm32cubeide_1.10.1\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.10.3-2021.10.win32_1.0.0.202111181127\tools\bin\../lib/gcc/arm-none-eabi/10.3.1/../../../../arm-none-eabi/include/c++/10.3.1/arm-none-eabi/thumb/v7-m/nofp/bits/gthr-default.h:229:1:int __gthread_key_delete(__gthread_key_t)	16	static
+../Core/Src/service/sensor_reader.cpp:13:13:ReaderState SensorReader::GetState()	16	static
+../Core/Src/service/sensor_reader.cpp:18:6:void SensorReader::SetState(ReaderState)	16	static
+../Core/Src/service/sensor_reader.cpp:26:6:virtual void SensorReader::Run()	16	static
+../Core/Src/service/sensor_reader.cpp:49:6:void SensorReader::_ReadSensor()	24	static

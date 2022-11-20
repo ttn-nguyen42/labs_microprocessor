@@ -1,0 +1,5 @@
+../Core/Src/model/uart_input.cpp:9:1:UARTInput::UARTInput(UART_HandleTypeDef*, USART_TypeDef*)	24	static
+../Core/Src/model/uart_input.cpp:15:21:UART_HandleTypeDef* UARTInput::GetTypeDef()	16	static
+../Core/Src/model/uart_input.cpp:20:16:USART_TypeDef* UARTInput::GetInstance()	16	static
+../Core/Src/model/uart_input.cpp:25:6:void UARTInput::Transmit(uint8_t*, uint16_t, uint32_t)	24	static
+../Core/Src/model/uart_input.cpp:30:6:void UARTInput::Receive(uint8_t*, uint16_t)	24	static

@@ -1,12 +1,12 @@
 /*
- * led_service.h
+ * controller.h
  *
- *  Created on: 5 Nov 2022
- *      Author: ttnng
+ *  Created on: Nov 4, 2022
+ *      Author: Nguyen Tran
  */
 
-#ifndef INC_SERVICE_LED_SERVICE_H_
-#define INC_SERVICE_LED_SERVICE_H_
+#ifndef INC_SERVICE_LED_CONTROLLER_H_
+#define INC_SERVICE_LED_CONTROLLER_H_
 
 #include "global.h"
 #include "state.h"
@@ -21,8 +21,11 @@ public:
      */
     void Run();
 
+    /*
+     * State helpers
+     */
     LedState GetState();
     void SetState(LedState to);
 };
 
-#endif /* INC_SERVICE_LED_SERVICE_H_ */
+#endif /* INC_SERVICE_LED_CONTROLLER_H_ */

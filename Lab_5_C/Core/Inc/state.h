@@ -12,18 +12,18 @@
  * Set of states
  */
 enum class State {
-    INIT,
-    WAIT_FOR_INPUT,
-    RESET,
-    INCREMENT,
-    DECREMENT,
-    AUTO_DECREMENT,
+    INIT
 };
 
 enum class LedState {
     INIT,
     ON,
     OFF
+};
+
+enum class ReaderState {
+    INIT,
+    READY,
 };
 
 #endif /* INC_STATE_H_ */

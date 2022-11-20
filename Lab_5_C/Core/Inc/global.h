@@ -20,19 +20,35 @@
 #include "helper/scheduler.h"
 #include "helper/timer.h"
 #include "main.h"
+#include "model/adc_input.h"
 #include "model/controller.h"
 #include "model/input.h"
 #include "model/led.h"
 #include "model/output.h"
 #include "model/pin.h"
+#include "model/uart_input.h"
 #include "service/controller.h"
 #include "service/led_controller.h"
+#include "service/sensor_reader.h"
 #include "state.h"
+
+/*
+ * Global variables
+ */
+extern ADC_HandleTypeDef hadc1;
+extern TIM_HandleTypeDef htim2;
+extern UART_HandleTypeDef huart2;
+
+extern class UARTInput uart2;
+extern class ADCInput adc2;
+
+extern uint8_t g_Temp;
 
 /*
  * Timers
  */
-extern class Timer g_TimerScheduler;
+extern class Timer g_Timer;
+extern class Timer g_TimerSensorReader;
 
 /*
  * Scheduler
@@ -42,20 +58,27 @@ extern class Scheduler g_Scheduler;
 /*
  * Pins
  */
-extern class Output O_LED_RED;
-extern class Output O_LED_YEL;
-extern class Output O_LED_GRN;
+extern class Output o_YEL_1;
 
 /*
  * LEDs
  */
-extern class Led g_RedLed;
-extern class Led g_YelLed;
-extern class Led g_GrnLed;
+extern class Led g_Yel_LED;
+
+/*
+ * UARTs
+ */
+
+/*
+ * Helpers
+ */
+extern class UARTListener g_Listener;
 
 /*
  * Services
  */
-extern class LedController g_Controller;
+extern class Controller g_Controller;
+extern class LedController g_Led_Controller;
+extern class SensorReader g_SensorReader;
 
 #endif /* INC_GLOBAL_H_ */

@@ -8,9 +8,19 @@
 #include "global.h"
 
 /*
+ * Global variables
+ */
+ADC_HandleTypeDef hadc1;
+TIM_HandleTypeDef htim2;
+UART_HandleTypeDef huart2;
+
+uint8_t g_Temp = 0;
+
+/*
  * Timers
  */
-Timer g_TimerScheduler;
+Timer g_Timer;
+Timer g_TimerSensorReader;
 
 /*
  * Scheduler
@@ -18,20 +28,24 @@ Timer g_TimerScheduler;
 Scheduler g_Scheduler;
 
 /*
+ * Inputs
+ */
+UARTInput uart2(&huart2, USART2);
+ADCInput adc2(&hadc1);
+
+/*
  * Pins
  */
-Output O_LED_RED(O_LED_RED_GPIO_Port, O_LED_RED_Pin);
-Output O_LED_YEL(O_LED_YEL_GPIO_Port, O_LED_YEL_Pin);
-Output O_LED_GRN(O_LED_GRN_GPIO_Port, O_LED_GRN_Pin);
+Output o_YEL_1(O_YEL_1_GPIO_Port, O_YEL_1_Pin);
 
 /*
  * LEDs
  */
-Led g_RedLed(&O_LED_RED);
-Led g_YelLed(&O_LED_YEL);
-Led g_GrnLed(&O_LED_GRN);
+Led g_Yel_LED(&o_YEL_1);
 
 /*
  * Services
  */
-LedController g_Controller;
+Controller g_Controller;
+LedController g_Led_Controller;
+SensorReader g_SensorReader;

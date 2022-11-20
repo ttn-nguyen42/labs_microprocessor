@@ -1,0 +1,38 @@
+/*
+ * global.cpp
+ *
+ *  Created on: 5 Nov 2022
+ *      Author: ttnng
+ */
+
+#include "global.h"
+
+uint8_t g_Temp = 0;
+
+/*
+ * Timers
+ */
+Timer g_Timer;
+Timer g_TimerSensorReader;
+
+/*
+ * Scheduler
+ */
+Scheduler g_Scheduler;
+
+/*
+ * Pins
+ */
+Output o_YEL_1(O_YEL_1_GPIO_Port, O_YEL_1_Pin);
+
+/*
+ * LEDs
+ */
+Led g_Yel_LED(&o_YEL_1);
+
+/*
+ * Services
+ */
+Controller g_Controller;
+LedController g_Led_Controller;
+SensorReader g_SensorReader;

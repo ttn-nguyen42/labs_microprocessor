@@ -1,0 +1,56 @@
+/*
+ * controller.cpp
+ *
+ *  Created on: 5 Nov 2022
+ *      Author: ttnng
+ */
+
+#include "service/sensor_reader.h"
+
+/*
+ * Helpers
+ */
+ReaderState SensorReader::GetState()
+{
+    return STATE;
+}
+
+void SensorReader::SetState(ReaderState to)
+{
+    STATE = to;
+}
+
+/*
+ * Entry point
+ */
+void SensorReader::Run()
+{
+    switch (GetState()) {
+    case ReaderState::INIT:
+        g_TimerSensorReader.Set(500);
+        g_TimerSensorReader.Start();
+        m_SensorData = 0;
+        /* Make initial read */
+        _ReadSensor();
+        SetState(ReaderState::READY);
+        break;
+    case ReaderState::READY:
+        if (g_Timer.HasSignal()) {
+            /* Read sensor */
+            _ReadSensor();
+            g_TimerSensorReader.Reset();
+            SetState(ReaderState::READY);
+        }
+        break;
+    default:
+        break;
+    }
+}
+
+void SensorReader::_ReadSensor()
+{
+    /* Create empty string as buffer */
+    char* str;
+    m_SensorData = adc2.Get();
+    HAL_UART_Transmit(&huart2, sprintf(str, "%ld\n", m_SensorData), (void*)str, 1000);
+}
