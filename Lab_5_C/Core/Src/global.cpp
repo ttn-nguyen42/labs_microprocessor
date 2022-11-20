@@ -15,12 +15,14 @@ TIM_HandleTypeDef htim2;
 UART_HandleTypeDef huart2;
 
 uint8_t g_Temp = 0;
+bool g_F_willPrintData = false;
 
 /*
  * Timers
  */
 Timer g_Timer;
 Timer g_TimerSensorReader;
+Timer g_TimerParser;
 
 /*
  * Scheduler
@@ -49,3 +51,4 @@ Led g_Yel_LED(&o_YEL_1);
 Controller g_Controller;
 LedController g_Led_Controller;
 SensorReader g_SensorReader;
+CommandParser g_CommandParser;

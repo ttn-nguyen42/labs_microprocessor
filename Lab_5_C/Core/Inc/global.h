@@ -27,28 +27,29 @@
 #include "model/output.h"
 #include "model/pin.h"
 #include "model/uart_input.h"
+#include "service/command_parser.h"
 #include "service/controller.h"
 #include "service/led_controller.h"
 #include "service/sensor_reader.h"
 #include "state.h"
 
 /*
+ * Typedefs
+ */
+extern TIM_HandleTypeDef htim2;
+
+/*
  * Global variables
  */
-extern ADC_HandleTypeDef hadc1;
-extern TIM_HandleTypeDef htim2;
-extern UART_HandleTypeDef huart2;
-
-extern class UARTInput uart2;
-extern class ADCInput adc2;
-
 extern uint8_t g_Temp;
+extern bool g_F_willPrintData;
 
 /*
  * Timers
  */
 extern class Timer g_Timer;
 extern class Timer g_TimerSensorReader;
+extern class Timer g_TimerParser;
 
 /*
  * Scheduler
@@ -66,13 +67,20 @@ extern class Output o_YEL_1;
 extern class Led g_Yel_LED;
 
 /*
+ * ADCs
+ */
+extern ADC_HandleTypeDef hadc1;
+extern class ADCInput adc2;
+
+/*
  * UARTs
  */
+extern UART_HandleTypeDef huart2;
+extern class UARTInput uart2;
 
 /*
  * Helpers
  */
-extern class UARTListener g_Listener;
 
 /*
  * Services
@@ -80,5 +88,6 @@ extern class UARTListener g_Listener;
 extern class Controller g_Controller;
 extern class LedController g_Led_Controller;
 extern class SensorReader g_SensorReader;
+extern class CommandParser g_CommandParser;
 
 #endif /* INC_GLOBAL_H_ */

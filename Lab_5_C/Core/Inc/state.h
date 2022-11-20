@@ -24,6 +24,15 @@ enum class LedState {
 enum class ReaderState {
     INIT,
     READY,
+    WAIT,
+};
+
+enum class CommandParserState {
+    INIT,
+    WAIT,
+    WAIT_AND_PRINT,
+    INTERRUPTED_WHILE_PRINTING,
+    INTERRUPTED,
 };
 
 #endif /* INC_STATE_H_ */

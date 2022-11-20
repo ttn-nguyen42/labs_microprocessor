@@ -91,9 +91,11 @@ int main(void)
     /* Initialize all configured peripherals */
     MX_GPIO_Init();
     MX_TIM2_Init();
-    MX_ADC1_Init();
     MX_USART2_UART_Init();
+    MX_ADC1_Init();
+
     HAL_TIM_Base_Start_IT(&htim2);
+    HAL_ADC_Start(&hadc1);
     /* USER CODE BEGIN 2 */
     /* UART Helper */
     uart2.Receive(&g_Temp, 1);
@@ -119,6 +121,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
      */
     g_Timer.Breath();
     g_TimerSensorReader.Breath();
+    g_TimerParser.Breath();
 }
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart)
@@ -128,6 +131,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef* huart)
      */
     /* Send back any character received from the terminal */
     if (huart->Instance == uart2.GetInstance()) {
+        g_CommandParser.BufferAdd(g_Temp);
         uart2.Transmit(&g_Temp, 1, 50);
         uart2.Receive(&g_Temp, 1);
     }
