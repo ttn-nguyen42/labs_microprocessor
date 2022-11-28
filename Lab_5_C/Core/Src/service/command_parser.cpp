@@ -27,97 +27,62 @@ void CommandParser::Run()
 {
     switch (GetState()) {
     case CommandParserState::INIT:
-        SetState(CommandParserState::WAIT);
+    	g_TimerParser.Set(3000);
+    	SetState(CommandParserState::WAIT);
         break;
     case CommandParserState::WAIT:
-        if (m_HasInput) {
-            /* Start timer to measure timeout */
-            g_TimerParser.Start();
-
-            SetState(CommandParserState::INTERRUPTED);
-
-            m_HasInput = false;
-        }
-        break;
+    	/* Wait for signal to be added */
+    	if (m_HasInput) {
+    		m_HasInput = false;
+//    		uart2.Transmit((uint8_t*)m_StringBuf, 30 * sizeof(uint8_t), 1000);
+    		g_TimerParser.Reset();
+    		SetState(CommandParserState::INTERRUPTED);
+    	}
+    	break;
     case CommandParserState::WAIT_AND_PRINT:
-        if (m_HasInput) {
-            /* Start timer to measure timeout */
-            g_TimerParser.Start();
-
-            /* Stop printing data */
-            g_F_willPrintData = false;
-            SetState(CommandParserState::INTERRUPTED_WHILE_PRINTING);
-
-            m_HasInput = false;
-        }
-        break;
+    	if (m_HasInput) {
+    		m_HasInput = false;
+    		g_TimerParser.Reset();
+    		g_F_willPrintData = false;
+    		SetState(CommandParserState::INTERRUPTED_WHILE_PRINTING);
+    	}
+    	break;
     case CommandParserState::INTERRUPTED:
-        if (_IsAskingForData()) {
-            /* Print data */
-            g_F_willPrintData = true;
-
-            /* Change to data printing state */
-            SetState(CommandParserState::WAIT_AND_PRINT);
-
-            _ClearBuffer();
-            m_HasInput = false;
-            break;
-        }
-        if (_IsStop()) {
-            /* Stop printing */
-            g_F_willPrintData = false;
-
-            /* Change to normal waiting state */
-            SetState(CommandParserState::WAIT);
-
-            _ClearBuffer();
-            m_HasInput = false;
-            break;
-        }
-
-        if (m_HasInput) {
-            /* If key is pressed again */
-            g_Timer.Reset();
-            m_HasInput = false;
-            break;
-        }
-
-        if (g_Timer.HasSignal()) {
-            SetState(CommandParserState::WAIT);
-
-            _ClearBuffer();
-            m_HasInput = false;
-        }
-        break;
+    	if (m_HasInput) {
+    		g_TimerParser.Reset();
+    		m_HasInput = false;
+    	}
+    	if (m_HasReset) {
+    		g_F_willPrintData = true;
+    		m_HasReset = false;
+    		SetState(CommandParserState::WAIT_AND_PRINT);
+    		break;
+    	}
+    	if (m_HasOk) {
+    		m_HasOk = false;
+    	}
+    	if (g_TimerParser.HasSignal()) {
+    		SetState(CommandParserState::WAIT);
+    	}
+    	break;
     case CommandParserState::INTERRUPTED_WHILE_PRINTING:
-        if (_IsStop()) {
-            /* Stop printing */
-            g_F_willPrintData = false;
-
-            /* Back to normal waiting state */
-            SetState(CommandParserState::WAIT);
-
-            _ClearBuffer();
-            m_HasInput = false;
-            break;
-        }
-
-        if (m_HasInput) {
-            /* If key is pressed again */
-            g_Timer.Reset();
-            m_HasInput = false;
-            break;
-        }
-
-        if (g_Timer.HasSignal()) {
-            /* Continue printing */
-            g_F_willPrintData = true;
-            SetState(CommandParserState::WAIT_AND_PRINT);
-
-            _ClearBuffer();
-            m_HasInput = false;
-        }
-        break;
+    	if (m_HasInput) {
+    		g_TimerParser.Reset();
+    		m_HasInput = false;
+    	}
+    	if (m_HasOk) {
+    		g_F_willPrintData = false;
+    		m_HasOk = false;
+    		SetState(CommandParserState::WAIT);
+    		break;
+    	}
+    	if (m_HasReset) {
+    		m_HasReset = false;
+    	}
+    	if (g_TimerParser.HasSignal()) {
+    		SetState(CommandParserState::WAIT_AND_PRINT);
+    	}
+    	break;
     default:
         break;
     }
@@ -125,43 +90,40 @@ void CommandParser::Run()
 
 void CommandParser::BufferAdd(uint8_t updated)
 {
-    if (updated == '\n') {
-        /* If received new line */
-        m_HasInput = true;
-        return;
-    }
-
-    if (m_StringBufLength == MAX_BUFFER_SIZE) {
-        /* If buffer string is full (after the first 30 inputs) */
-        m_StringBuf[m_BufIndex] = (char)updated;
-    } else {
-        m_StringBufLength += 1;
-        m_StringBuf += (char)updated;
-    }
-
-    m_BufIndex += 1;
-    if (m_BufIndex == MAX_BUFFER_SIZE) {
-        m_BufIndex = 0;
-        m_StringBuf = "";
-    }
-
+	uint8_t* newLine = (uint8_t*)"\r\n";
+	if (updated == *newLine) {
+		/* Check if buffer is equal to command */
+		if (_IsAskingForData()) {
+			m_HasReset = true;
+		}
+		if (_IsStop()) {
+			m_HasOk = true;
+		}
+		_ClearBuffer();
+	} else {
+	    m_Buf[m_BufIndex] = updated;
+	    m_BufIndex = (m_BufIndex + 1) % 30;
+	}
+    m_StringBuf = (char*)m_Buf;
     m_HasInput = true;
 }
 
 void CommandParser::_ClearBuffer()
 {
     /* Clear buffer */
-    m_StringBuf = "";
+	for (int i = 0; i < m_BufIndex; i += 1) {
+		m_Buf[i] = (uint8_t)0;
+	}
 }
 
 bool CommandParser::_IsAskingForData()
 {
-    /* TODO */
-    return (m_StringBuf == "!RST#");
+	char* dataCommand = (char*)"!RST#";
+    return (*m_StringBuf == *dataCommand);
 }
 
 bool CommandParser::_IsStop()
 {
-    /* TODO */
-    return (m_StringBuf == "!OK#");
+	char* stopCommand = (char*)"!OK#";
+    return (*m_StringBuf == *stopCommand);
 }

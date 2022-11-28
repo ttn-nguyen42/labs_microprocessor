@@ -12,18 +12,20 @@
 
 #include "global.h"
 #include "state.h"
-#include <string>
+#include <string.h>
 
 class CommandParser : public IController {
 private:
     uint8_t m_Buf[MAX_BUFFER_SIZE];
 
-    std::string m_StringBuf = "";
+    char* m_StringBuf;
     int m_StringBufLength = 0;
 
     uint8_t m_BufIndex = 0;
 
     bool m_HasInput = false;
+    bool m_HasReset = false;
+    bool m_HasOk = false;
 
     CommandParserState STATE = CommandParserState::INIT;
 
