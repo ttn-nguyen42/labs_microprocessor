@@ -2,4 +2,4 @@ c:\st\stm32cubeide_1.10.1\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.external
 ../Core/Src/service/sensor_reader.cpp:13:13:ReaderState SensorReader::GetState()	16	static
 ../Core/Src/service/sensor_reader.cpp:18:6:void SensorReader::SetState(ReaderState)	16	static
 ../Core/Src/service/sensor_reader.cpp:26:6:virtual void SensorReader::Run()	16	static
-../Core/Src/service/sensor_reader.cpp:49:6:void SensorReader::_ReadSensor()	24	static
+../Core/Src/service/sensor_reader.cpp:65:6:void SensorReader::_ReadSensor()	24	static

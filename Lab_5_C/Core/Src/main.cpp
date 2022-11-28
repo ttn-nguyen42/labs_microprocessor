@@ -110,6 +110,7 @@ int main(void)
         /* USER CODE BEGIN 3 */
         g_Led_Controller.Run();
         g_SensorReader.Run();
+        g_CommandParser.Run();
     }
     /* USER CODE END 3 */
 }

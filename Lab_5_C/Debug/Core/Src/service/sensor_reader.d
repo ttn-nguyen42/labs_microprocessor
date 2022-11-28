@@ -39,9 +39,9 @@ Core/Src/service/sensor_reader.o: ../Core/Src/service/sensor_reader.cpp \
  ../Core/Inc/model/controller.h ../Core/Inc/model/input.h \
  ../Core/Inc/model/led.h ../Core/Inc/model/output.h \
  ../Core/Inc/model/pin.h ../Core/Inc/model/uart_input.h \
- ../Core/Inc/service/controller.h ../Core/Inc/state.h \
- ../Core/Inc/service/led_controller.h ../Core/Inc/service/sensor_reader.h \
- ../Core/Inc/state.h
+ ../Core/Inc/service/command_parser.h ../Core/Inc/state.h \
+ ../Core/Inc/service/controller.h ../Core/Inc/service/led_controller.h \
+ ../Core/Inc/service/sensor_reader.h ../Core/Inc/state.h
 ../Core/Inc/service/sensor_reader.h:
 ../Core/Inc/global.h:
 ../Core/Inc/component/led.h:
@@ -94,8 +94,9 @@ Core/Src/service/sensor_reader.o: ../Core/Src/service/sensor_reader.cpp \
 ../Core/Inc/model/output.h:
 ../Core/Inc/model/pin.h:
 ../Core/Inc/model/uart_input.h:
-../Core/Inc/service/controller.h:
+../Core/Inc/service/command_parser.h:
 ../Core/Inc/state.h:
+../Core/Inc/service/controller.h:
 ../Core/Inc/service/led_controller.h:
 ../Core/Inc/service/sensor_reader.h:
 ../Core/Inc/state.h:

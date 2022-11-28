@@ -30,7 +30,6 @@ void SensorReader::Run()
         g_TimerSensorReader.Set(500);
         g_TimerSensorReader.Start();
         m_SensorData = 0;
-        /* Might not be realistic but should be added */
         if (!g_F_willPrintData) {
             SetState(ReaderState::WAIT);
             break;
@@ -67,6 +66,6 @@ void SensorReader::_ReadSensor()
 {
     char* str = (char*)'0';
     m_SensorData = adc2.Get();
-    int size = sprintf(str, "%ld\r\n", m_SensorData);
+    int size = sprintf(str, "!ADC=%ld#\r\n", m_SensorData);
     uart2.Transmit((uint8_t*)str, size, 1000);
 }

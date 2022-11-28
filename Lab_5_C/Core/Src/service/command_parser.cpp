@@ -30,16 +30,16 @@ void CommandParser::Run()
         SetState(CommandParserState::WAIT);
         break;
     case CommandParserState::WAIT:
-        m_HasInput = false;
         if (m_HasInput) {
             /* Start timer to measure timeout */
             g_TimerParser.Start();
 
             SetState(CommandParserState::INTERRUPTED);
+
+            m_HasInput = false;
         }
         break;
     case CommandParserState::WAIT_AND_PRINT:
-        m_HasInput = false;
         if (m_HasInput) {
             /* Start timer to measure timeout */
             g_TimerParser.Start();
@@ -52,7 +52,7 @@ void CommandParser::Run()
         }
         break;
     case CommandParserState::INTERRUPTED:
-        if (_IsAskingForData() && (g_SensorReader.GetState() == ReaderState::WAIT)) {
+        if (_IsAskingForData()) {
             /* Print data */
             g_F_willPrintData = true;
 
@@ -60,9 +60,10 @@ void CommandParser::Run()
             SetState(CommandParserState::WAIT_AND_PRINT);
 
             _ClearBuffer();
+            m_HasInput = false;
             break;
         }
-        if (_IsStop() && ((g_SensorReader.GetState() == ReaderState::READY) || (g_SensorReader.GetState() == ReaderState::INIT))) {
+        if (_IsStop()) {
             /* Stop printing */
             g_F_willPrintData = false;
 
@@ -70,6 +71,7 @@ void CommandParser::Run()
             SetState(CommandParserState::WAIT);
 
             _ClearBuffer();
+            m_HasInput = false;
             break;
         }
 
@@ -84,10 +86,11 @@ void CommandParser::Run()
             SetState(CommandParserState::WAIT);
 
             _ClearBuffer();
+            m_HasInput = false;
         }
         break;
     case CommandParserState::INTERRUPTED_WHILE_PRINTING:
-        if (_IsStop() && ((g_SensorReader.GetState() == ReaderState::READY) || (g_SensorReader.GetState() == ReaderState::INIT))) {
+        if (_IsStop()) {
             /* Stop printing */
             g_F_willPrintData = false;
 
@@ -95,6 +98,7 @@ void CommandParser::Run()
             SetState(CommandParserState::WAIT);
 
             _ClearBuffer();
+            m_HasInput = false;
             break;
         }
 
@@ -111,6 +115,7 @@ void CommandParser::Run()
             SetState(CommandParserState::WAIT_AND_PRINT);
 
             _ClearBuffer();
+            m_HasInput = false;
         }
         break;
     default:
@@ -120,14 +125,11 @@ void CommandParser::Run()
 
 void CommandParser::BufferAdd(uint8_t updated)
 {
-    if (updated == '\n' || updated == '\r\n') {
+    if (updated == '\n') {
         /* If received new line */
-        /* Just clear the buffer */
-        _ClearBuffer();
+        m_HasInput = true;
         return;
     }
-
-    m_Buf[m_BufIndex] = updated;
 
     if (m_StringBufLength == MAX_BUFFER_SIZE) {
         /* If buffer string is full (after the first 30 inputs) */
@@ -142,24 +144,24 @@ void CommandParser::BufferAdd(uint8_t updated)
         m_BufIndex = 0;
         m_StringBuf = "";
     }
+
     m_HasInput = true;
 }
 
 void CommandParser::_ClearBuffer()
 {
     /* Clear buffer */
-    std::fill(std::begin(m_Buf), std::end(m_Buf), 0);
     m_StringBuf = "";
 }
 
 bool CommandParser::_IsAskingForData()
 {
     /* TODO */
-    return m_StringBuf.;
+    return (m_StringBuf == "!RST#");
 }
 
 bool CommandParser::_IsStop()
 {
     /* TODO */
-    return false;
+    return (m_StringBuf == "!OK#");
 }

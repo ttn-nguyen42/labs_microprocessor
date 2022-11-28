@@ -1,5 +1,5 @@
-Core/Src/service/led_controller.o: ../Core/Src/service/led_controller.cpp \
- ../Core/Inc/service/led_controller.h ../Core/Inc/global.h \
+Core/Src/service/command_parser.o: ../Core/Src/service/command_parser.cpp \
+ ../Core/Inc/service/command_parser.h ../Core/Inc/global.h \
  ../Core/Inc/component/led.h ../Core/Inc/model/led.h \
  ../Core/Inc/model/output.h ../Core/Inc/model/pin.h ../Core/Inc/main.h \
  ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
@@ -39,10 +39,10 @@ Core/Src/service/led_controller.o: ../Core/Src/service/led_controller.cpp \
  ../Core/Inc/model/controller.h ../Core/Inc/model/input.h \
  ../Core/Inc/model/led.h ../Core/Inc/model/output.h \
  ../Core/Inc/model/pin.h ../Core/Inc/model/uart_input.h \
- ../Core/Inc/service/command_parser.h ../Core/Inc/state.h \
- ../Core/Inc/service/controller.h ../Core/Inc/service/led_controller.h \
+ ../Core/Inc/service/command_parser.h ../Core/Inc/service/controller.h \
+ ../Core/Inc/state.h ../Core/Inc/service/led_controller.h \
  ../Core/Inc/service/sensor_reader.h ../Core/Inc/state.h
-../Core/Inc/service/led_controller.h:
+../Core/Inc/service/command_parser.h:
 ../Core/Inc/global.h:
 ../Core/Inc/component/led.h:
 ../Core/Inc/model/led.h:
@@ -95,8 +95,8 @@ Core/Src/service/led_controller.o: ../Core/Src/service/led_controller.cpp \
 ../Core/Inc/model/pin.h:
 ../Core/Inc/model/uart_input.h:
 ../Core/Inc/service/command_parser.h:
-../Core/Inc/state.h:
 ../Core/Inc/service/controller.h:
+../Core/Inc/state.h:
 ../Core/Inc/service/led_controller.h:
 ../Core/Inc/service/sensor_reader.h:
 ../Core/Inc/state.h:

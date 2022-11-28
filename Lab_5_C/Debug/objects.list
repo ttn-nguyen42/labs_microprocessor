@@ -15,6 +15,7 @@
 "./Core/Src/model/output.o"
 "./Core/Src/model/pin.o"
 "./Core/Src/model/uart_input.o"
+"./Core/Src/service/command_parser.o"
 "./Core/Src/service/controller.o"
 "./Core/Src/service/led_controller.o"
 "./Core/Src/service/sensor_reader.o"
