@@ -13,28 +13,49 @@ Scheduler::Scheduler()
 
 int Scheduler::AddTask(void (*callback)(), int delay, int period)
 {
+    if (m_QueueSize == (SCH_MAX_TASKS - 1)) {
+        return SCH_MAX_TASKS;
+    }
+
+    bool flag = false;
     int index = 0;
 
-    /* Find a place for the task */
-    while ((m_TaskQueue[index].pCallback != 0) && (index < m_QueueSize)) {
+    /*
+     * Start from beginning
+     * Find an index where the newly added task has a delay smaller than the one existing
+     * Along the way, subtract its delay by task (will be) in front of it
+     */
+    while ((index < m_QueueSize) && (flag == false)) {
+        if (delay > m_TaskQueue[index].Delay) {
+            delay -= m_TaskQueue[index].Delay;
+        } else {
+            flag = true;
+            m_TaskQueue[index].Delay -= delay;
+        }
         index += 1;
     }
 
-    if (index == m_QueueSize) {
-        m_QueueSize += 1;
+    /*
+     * Shift the task array to the right
+     */
+    if (flag) {
+        index -= 1;
+        for (int b = m_QueueSize; b > index; b -= 1) {
+            Task* fromBack = &m_TaskQueue[b];
+            Task* infront = &m_TaskQueue[b - 1];
+            fromBack->Delay = infront->Delay;
+            fromBack->Id = infront->Id;
+            fromBack->IsReady = fromBack->IsReady;
+            fromBack->pCallback = fromBack->pCallback;
+            fromBack->Period = fromBack->Period;
+        }
     }
-
-    if (m_QueueSize == SCH_MAX_TASKS) {
-        return -1;
-    }
-
-    Task* atIndex = &m_TaskQueue[index];
-
-    /* Create the task */
-    atIndex->pCallback = callback;
-    atIndex->Delay = delay / TICK;
-    atIndex->Period = period / TICK;
-    atIndex->IsReady = false;
+    Task* newTaskPlacement = &m_TaskQueue[index];
+    newTaskPlacement->Delay = delay;
+    newTaskPlacement->Id = index;
+    newTaskPlacement->IsReady = false;
+    newTaskPlacement->pCallback = callback;
+    newTaskPlacement->Period = period;
 
     return index;
 }
@@ -49,17 +70,20 @@ void Scheduler::DeleteTask(int taskIndex)
         return;
     }
 
-    Task* atIndex = &m_TaskQueue[taskIndex];
-
-    if (atIndex->pCallback == nullptr) {
+    if (!m_TaskQueue[taskIndex].pCallback) {
         return;
     }
 
-    /* Reset the task */
-    atIndex->pCallback = nullptr;
-    atIndex->Delay = 0;
-    atIndex->Period = 0;
-    atIndex->IsReady = false;
+    /* Move task to the front */
+    for (int i = 0; i < m_QueueSize - 1; i += 1) {
+        Task* current = &m_TaskQueue[i];
+        Task* next = &m_TaskQueue[i + 1];
+        current->Delay = next->Delay;
+        current->Id = next->Id;
+        current->IsReady = next->IsReady;
+        current->pCallback = current->pCallback;
+        current->Period = current->Period;
+    }
 }
 
 void Scheduler::Init()
@@ -77,50 +101,25 @@ void Scheduler::Dispatch()
     /*
      * Executes the task
      */
-    for (int i = 0; i < m_QueueSize; i += 1) {
-        Task* atIndex = &m_TaskQueue[i];
-
-        if (atIndex->IsReady) {
-            /*
-             * Execute the callback
-             */
-            (*(atIndex->pCallback))();
-            atIndex->IsReady = false;
-            if (atIndex->Period == 0) {
-                /* Is a one-time job, remove from the queue */
-                this->DeleteTask(i);
-            }
+    Task* front = &m_TaskQueue[0];
+    if (front->IsReady) {
+        (*front->pCallback)();
+        if (front->Period > 0) {
+            AddTask(front->pCallback, front->Delay, front->Period);
         }
+        DeleteTask(0);
     }
 }
 
 void Scheduler::Update()
 {
     /*
-     * Solely updates the time
-     * Called in the interupt
+     * Update time on the first task
      */
-    for (int i = 0; i < SCH_MAX_TASKS; i += 1) {
-        Task* atIndex = &m_TaskQueue[i];
-        /*
-         * If there is a task
-         */
-        if (atIndex->pCallback) {
-
-            /* If the task is ready to run */
-            if (atIndex->Delay == 0) {
-
-                /* Mark the task as ready to be executed */
-                atIndex->IsReady = true;
-
-                /* Check if its period is set, then schedule the task again */
-                if (atIndex->Period > 0) {
-                    atIndex->Delay = atIndex->Period;
-                }
-            } else {
-                /* If the task is not ready, decrement the delay until it is ready */
-                atIndex->Delay -= 1;
-            }
-        }
+    Task* front = &m_TaskQueue[0];
+    if (front->Delay == 0) {
+        front->IsReady = true;
+        return;
     }
+    front->Delay -= 1;
 }
