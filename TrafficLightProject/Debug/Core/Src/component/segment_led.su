@@ -1,0 +1,3 @@
+../Core/Src/component/segment_led.cpp:10:1:SegmentLed::SegmentLed(Led**)	24	static
+../Core/Src/component/segment_led.cpp:21:6:void SegmentLed::Clear()	24	static
+../Core/Src/component/segment_led.cpp:28:6:void SegmentLed::Display(int)	16	static
